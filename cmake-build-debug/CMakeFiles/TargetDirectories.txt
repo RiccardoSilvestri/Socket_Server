@@ -1,0 +1,3 @@
+C:/Users/RiccardoSilvestri/OneDrive - ITS Angelo Rizzoli/Documents/VS-Clion-Projects/c/Socket_Server/cmake-build-debug/CMakeFiles/Socket_Server.dir
+C:/Users/RiccardoSilvestri/OneDrive - ITS Angelo Rizzoli/Documents/VS-Clion-Projects/c/Socket_Server/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/RiccardoSilvestri/OneDrive - ITS Angelo Rizzoli/Documents/VS-Clion-Projects/c/Socket_Server/cmake-build-debug/CMakeFiles/rebuild_cache.dir

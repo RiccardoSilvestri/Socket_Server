@@ -1,0 +1,60 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.26"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Socket_Server",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Socket_Server::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Socket_Server-Debug-9f5cc311958be80b0bb4.json",
+					"name" : "Socket_Server",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/RiccardoSilvestri/OneDrive - ITS Angelo Rizzoli/Documents/VS-Clion-Projects/c/Socket_Server/cmake-build-debug",
+		"source" : "C:/Users/RiccardoSilvestri/OneDrive - ITS Angelo Rizzoli/Documents/VS-Clion-Projects/c/Socket_Server"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 5
+	}
+}
