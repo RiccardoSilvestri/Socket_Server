@@ -9,18 +9,19 @@
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <sys/types.h>
+#include <unistd.h>  // Aggiunto per la funzione close()
 #endif
 
 #ifdef WIN32
 int ServerInWindows();  // Dichiarazione della funzione per Windows
-#else
+#elif defined(__unix__) || defined(__APPLE__)
 int ServerInUnix();  // Dichiarazione della funzione per Unix
 #endif
 
 int main(int argc, char const* argv[]) {
 #ifdef WIN32
     ServerInWindows();  // Chiamata alla funzione per Windows
-#else
+#elif defined(__unix__) || defined(__APPLE__)
     ServerInUnix();  // Chiamata alla funzione per Unix
 #endif
 
@@ -78,10 +79,14 @@ int ServerInWindows() {
 }
 #endif
 
-#ifdef __unix__
+#if defined(__unix__) || defined(__APPLE__)
 int ServerInUnix() {
     // Codice specifico di Unix...
     int servSockD = socket(AF_INET, SOCK_STREAM, 0);
+    if (servSockD == -1) {
+        perror("Socket creation failed");
+        return 1;
+    }
 
     char serMsg[255] = "Message from the server to the client 'Hello Client' ";
 
@@ -91,13 +96,29 @@ int ServerInUnix() {
     servAddr.sin_port = htons(5555);
     servAddr.sin_addr.s_addr = INADDR_ANY;
 
-    bind(servSockD, (struct sockaddr*)&servAddr, sizeof(servAddr));
+    if (bind(servSockD, (struct sockaddr*)&servAddr, sizeof(servAddr)) == -1) {
+        perror("Socket binding failed");
+        close(servSockD);
+        return 1;
+    }
 
-    listen(servSockD, 1);
+    if (listen(servSockD, 1) == -1) {
+        perror("Socket listening failed");
+        close(servSockD);
+        return 1;
+    }
 
     int clientSocket = accept(servSockD, NULL, NULL);
+    if (clientSocket == -1) {
+        perror("Socket accepting failed");
+        close(servSockD);
+        return 1;
+    }
 
     send(clientSocket, serMsg, sizeof(serMsg), 0);
+
+    close(clientSocket);
+    close(servSockD);
 
     return 0;
 }
