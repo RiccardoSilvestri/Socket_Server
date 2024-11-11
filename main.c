@@ -9,20 +9,20 @@
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <sys/types.h>
-#include <unistd.h>  // Aggiunto per la funzione close()
+#include <unistd.h>
 #endif
 
 #ifdef WIN32
-int ServerInWindows();  // Dichiarazione della funzione per Windows
+int ServerInWindows();
 #elif defined(__unix__) || defined(__APPLE__)
-int ServerInUnix();  // Dichiarazione della funzione per Unix
+int ServerInUnix();
 #endif
 
 int main(int argc, char const* argv[]) {
 #ifdef WIN32
-    ServerInWindows();  // Chiamata alla funzione per Windows
+    ServerInWindows();
 #elif defined(__unix__) || defined(__APPLE__)
-    ServerInUnix();  // Chiamata alla funzione per Unix
+    ServerInUnix();
 #endif
 
     return 0;
@@ -30,7 +30,6 @@ int main(int argc, char const* argv[]) {
 
 #ifdef WIN32
 int ServerInWindows() {
-    // Includi solo le dichiarazioni specifiche di Windows
     WSADATA wsaData;
     if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
         printf("Failed to initialize Winsock.\n");
@@ -81,7 +80,6 @@ int ServerInWindows() {
 
 #if defined(__unix__) || defined(__APPLE__)
 int ServerInUnix() {
-    // Codice specifico di Unix...
     int servSockD = socket(AF_INET, SOCK_STREAM, 0);
     if (servSockD == -1) {
         perror("Socket creation failed");
