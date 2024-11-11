@@ -1,3 +1,0 @@
-C:/Users/RiccardoSilvestri/OneDrive - ITS Angelo Rizzoli/Documents/GitHub/Socket_Server/cmake-build-debug/CMakeFiles/Socket_Server.dir
-C:/Users/RiccardoSilvestri/OneDrive - ITS Angelo Rizzoli/Documents/GitHub/Socket_Server/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/RiccardoSilvestri/OneDrive - ITS Angelo Rizzoli/Documents/GitHub/Socket_Server/cmake-build-debug/CMakeFiles/rebuild_cache.dir
