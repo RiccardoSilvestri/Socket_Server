@@ -44,10 +44,7 @@ int ServerInWindows() {
         return 1;
     }
 
-    char serMsg[255] = "Message from the server to the client 'Hello Client' ";
-
     struct sockaddr_in servAddr;
-
     servAddr.sin_family = AF_INET;
     servAddr.sin_port = htons(5555);
     servAddr.sin_addr.s_addr = INADDR_ANY;
@@ -66,9 +63,32 @@ int ServerInWindows() {
         return 1;
     }
 
+    printf("Server is waiting for a connection...\n");
     SOCKET clientSocket = accept(servSockD, NULL, NULL);
 
-    send(clientSocket, serMsg, sizeof(serMsg), 0);
+    if (clientSocket == INVALID_SOCKET) {
+        printf("Failed to accept connection.\n");
+        closesocket(servSockD);
+        WSACleanup();
+        return 1;
+    }
+
+    char buffer[255];
+    char serMsg[255] = "Message from the server to the client 'Hello Client' ";
+
+    while (1) {
+        int bytesReceived = recv(clientSocket, buffer, sizeof(buffer) - 1, 0);
+
+        if (bytesReceived <= 0) {
+            printf("Connection closed by client or error.\n");
+            break;
+        }
+
+        buffer[bytesReceived] = '\0';
+        printf("%s\n", buffer);
+
+        send(clientSocket, serMsg, sizeof(serMsg), 0);
+    }
 
     closesocket(clientSocket);
     closesocket(servSockD);
